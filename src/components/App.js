@@ -5,6 +5,7 @@ import {useState} from "react"
 function App() {
 
   const [searchText, setSearchText] = useState("")
+  const [formData, setFormData] = useState({})
 
   const [pets, setPets] = useState([
     {
@@ -57,10 +58,20 @@ function App() {
     }))
   }
 
+  function addPet(event){
+    event.preventDefault()
+
+    setPets([...pets, {id: pets.length + 1, ...formData}])
+  }
+
+  function updateFormData(event){
+    setFormData({...formData, [event.target.name]: event.target.value})
+  }
+
   return (
     <div className="app">
       <Header />
-      <PetPage pets={filteredPets} setSearchText={setSearchText} adoptPet={adoptPet} />
+      <PetPage pets={filteredPets} setSearchText={setSearchText} adoptPet={adoptPet} addPet={addPet} updateFormData={updateFormData} />
     </div>
   );
 }
