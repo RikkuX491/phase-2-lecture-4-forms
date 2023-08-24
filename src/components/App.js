@@ -64,14 +64,6 @@ function App() {
     }))
   }
 
-  // function updatePetNameInput(event){
-  //   setPetNameInput(event.target.value)
-  // }
-
-  // function updatePetImageInput(event){
-  //   setPetImageInput(event.target.value)
-  // }
-
   function updateFormInputData(event){
     setFormInputData({...formInputData, [event.target.name]: event.target.value})
   }
