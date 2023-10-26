@@ -52,8 +52,6 @@ function App() {
     }
   ])
 
-  console.log(pets)
-
   const filteredPets = pets.filter(pet => {
     if(searchText === ""){
       return true
