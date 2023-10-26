@@ -57,10 +57,14 @@ function App() {
     }))
   }
 
+  function updateSearchText(event){
+    setSearchText(event.target.value)
+  }
+
   return (
     <div className="app">
       <Header />
-      <PetPage pets={filteredPets} setSearchText={setSearchText} adoptPet={adoptPet} />
+      <PetPage pets={filteredPets} updateSearchText={updateSearchText} adoptPet={adoptPet} />
     </div>
   );
 }
