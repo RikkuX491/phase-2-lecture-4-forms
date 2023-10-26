@@ -6,6 +6,14 @@ function App() {
 
   const [searchText, setSearchText] = useState("")
 
+  // const [nameInput, setNameInput] = useState("")
+  // const [imageInput, setImageInput] = useState("")
+
+  const [formData, setFormData] = useState({
+    name: "",
+    image: ""
+  })
+
   const [pets, setPets] = useState([
     {
         id: 1,
@@ -44,6 +52,8 @@ function App() {
     }
   ])
 
+  console.log(pets)
+
   const filteredPets = pets.filter(pet => {
     if(searchText === ""){
       return true
@@ -61,10 +71,38 @@ function App() {
     setSearchText(event.target.value)
   }
 
+  function addPet(event){
+    event.preventDefault()
+
+    const newPet = {
+      id: pets[pets.length - 1].id + 1,
+      ...formData
+    }
+
+    setPets([...pets, newPet])
+
+    setFormData({
+      name: "",
+      image: ""
+    })
+  }
+
+  // function updateNameInput(event){
+  //   setNameInput(event.target.value)
+  // }
+
+  // function updateImageInput(event){
+  //   setImageInput(event.target.value)
+  // }
+
+  function updateFormData(event){
+    setFormData({...formData, [event.target.name]: event.target.value})
+  }
+
   return (
     <div className="app">
       <Header />
-      <PetPage pets={filteredPets} updateSearchText={updateSearchText} adoptPet={adoptPet} />
+      <PetPage pets={filteredPets} updateSearchText={updateSearchText} adoptPet={adoptPet} addPet={addPet} formData={formData} updateFormData={updateFormData}/>
     </div>
   );
 }
